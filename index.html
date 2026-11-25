@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas 3D do Corpo Humano</title>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header>
+    <h1>Atlas 3D do Corpo Humano</h1>
+    <p>Material educativo. Não substitui orientação médica.</p>
+    <button id="open-credits" type="button">Créditos e licenças</button>
+  </header>
+  <main>
+    <aside id="controls">
+      <div class="search">
+        <input id="search" type="search" placeholder="Buscar estrutura…" aria-label="Buscar estrutura" autocomplete="off">
+        <ul id="results"></ul>
+      </div>
+      <h2>Camadas</h2>
+      <ul id="layers"></ul>
+      <button id="reset" type="button">Restaurar visão</button>
+      <p class="hint">Arraste para girar, use a rolagem para aproximar e o botão direito para mover.</p>
+    </aside>
+    <div id="viewer"></div>
+    <aside id="details" aria-live="polite"></aside>
+  </main>
+  <dialog id="credits"></dialog>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
