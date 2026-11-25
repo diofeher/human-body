@@ -1,0 +1,6 @@
+.cache/
+node_modules/
+dist/
+.superpowers/
+.DS_Store
+__pycache__/
