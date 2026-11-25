@@ -21,9 +21,11 @@ State today: the private repo `diofeher/human-body` is created and linked, with 
 ## Licensing requirements
 - Use the official `Z-Anatomy/Models-of-human-anatomy` repo (its `License.txt` was read). Record the commit used.
 - Exclude the inner ear and kidneys. Check the object names to find them; credits don't map sources to pieces, so some risk remains. BodyParts3D kidneys are a later option.
-- Portuguese names come from `Resources/Translations0.txt` in `LluisV/Z-Anatomy` (repo README says CC BY-SA 4.0). Its linked Google Doc on model terms is unread; read it before using the file. Flag names that look European Portuguese or untranslated.
+- Portuguese names come from `Resources/Translations0.txt` in `LluisV/Z-Anatomy` (repo README says CC BY-SA 4.0; its linked licence document was read on 2026-11-25). Flag names that look European Portuguese or untranslated.
 - A visible "Créditos" page with the attribution lines from `License.txt`, licence links and a list of our changes. Add the BodyParts3D CC BY 4.0 line only if we use files from its archive.
-- Converted models and adapted data are CC BY-SA 4.0 (`LICENSE-ASSETS`). The app code's licence is the owner's decision and stays unset for now.
+- Converted models and adapted data are CC BY-SA 4.0 (`LICENSE-ASSETS`).
+- The Z-Anatomy licence document's FAQ says an app made to read the model must share its code. The owner accepted this on 2026-11-25 (BodyParts3D only was checked and rejected: large gaps in nerves, lymphatics, ligaments, lungs and liver). The source must be public before the site is published. The repo stays private during development. The code licence file is added after checking which licence meets the "same licence" wording, and telling the owner.
+- The published site links to its source code from the credits page once the source is public.
 - Page states it is educational and not medical advice.
 
 ## Parts
