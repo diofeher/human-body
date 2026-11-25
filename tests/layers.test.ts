@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, test, vi } from 'vitest'
 import { createLayerStore } from '../src/state/layers'
 
 function controllable() {
@@ -30,6 +30,7 @@ test('a layer loads only once', async () => {
 })
 
 test('a failed layer can be retried and does not affect others', async () => {
+  vi.spyOn(console, 'warn').mockImplementation(() => {})
   const { calls, load } = controllable()
   const store = createLayerStore(load)
   const ok = store.setVisible('esqueleto', true)

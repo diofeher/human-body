@@ -1,4 +1,4 @@
-export const LAYER_IDS = ['esqueleto', 'articulacoes', 'musculos', 'cardiovascular', 'nervoso', 'orgaos', 'linfatico'] as const
+export const LAYER_IDS = ['esqueleto', 'articulacoes', 'musculos', 'tecidos', 'cardiovascular', 'nervoso', 'orgaos', 'linfatico'] as const
 export type LayerId = (typeof LAYER_IDS)[number]
 
 export interface Structure {

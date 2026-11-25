@@ -70,3 +70,12 @@ test('placeholder objects named with question marks are not structures', () => {
   expect(isStructureName('????????.l')).toBe(false)
   expect(isStructureName('?x')).toBe(false)
 })
+
+test('fascia and other soft tissues are split from the muscles', () => {
+  const muscles = ['4: Muscular system']
+  for (const n of ['Brachial fascia.l', 'Fascia lata.r', 'Anserine bursa.l', 'Subtendinous bursa of triceps brachii muscle.r', 'Common flexor tendon sheath.l', 'Flexor retinaculum of wrist.r', 'Lateral femoral intermuscular septum.l', 'Iliotibial tract.l', 'Plantar aponeurosis.l', 'Synovial sheaths of digits of hand.l'])
+    expect(layerFor(muscles, n), n).toBe('tecidos')
+  for (const n of ['Tensor fasciae latae.l', 'Sartorius muscle.l', 'Calcaneal tendon.r', 'Diaphragm'])
+    expect(layerFor(muscles, n), n).toBe('musculos')
+  expect(layerFor(['8: Visceral systems'], 'Synovial sheaths.l')).toBe('orgaos')
+})

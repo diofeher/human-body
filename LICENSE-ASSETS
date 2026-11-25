@@ -24,5 +24,6 @@ Alterações feitas
 - Removidos: orelha interna (cóclea e vestíbulo), rins, pelve renal, vasos intrarrenais,
   inserções musculares, regiões do corpo, rótulos e linhas de referência.
 - Curvas convertidas em malhas, subdivisão desativada, polígonos reduzidos.
+- Fáscias, bolsas, bainhas e tecidos semelhantes separados dos músculos em uma camada própria.
 - Materiais e normais removidos; arquivos separados por camada e compactados (meshopt).
 - Nomes extraídos para structures.json; estruturas sem tradução mantêm o nome em inglês.

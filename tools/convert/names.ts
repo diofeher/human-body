@@ -21,10 +21,14 @@ const LAYER_BY_NUMBER: Record<string, LayerId> = {
   '6': 'linfatico', '7': 'nervoso', '8': 'orgaos',
 }
 
-export function layerFor(collections: string[]): LayerId | null {
+// sheets and sacs that wrap the muscles and would hide them
+const SOFT_TISSUE = /\bfascia\b|bursa|sheath|retinaculum|intermuscular septum|iliotibial tract|aponeurosis|fat pad/i
+
+export function layerFor(collections: string[], name = ''): LayerId | null {
   for (const c of collections) {
     const m = c.match(/^(\d):/)
-    if (m && LAYER_BY_NUMBER[m[1]]) return LAYER_BY_NUMBER[m[1]]
+    const layer = m ? LAYER_BY_NUMBER[m[1]] : undefined
+    if (layer) return layer === 'musculos' && SOFT_TISSUE.test(name) ? 'tecidos' : layer
   }
   return null
 }

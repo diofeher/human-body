@@ -4,10 +4,13 @@ import { createViewer } from './scene/viewer.ts'
 import { createLayerStore } from './state/layers.ts'
 import { createLayersPanel } from './ui/layers-panel.ts'
 import { createSearch } from './ui/search.ts'
+import { createDetailsPanel } from './ui/details-panel.ts'
+import { setupCredits } from './ui/credits.ts'
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 
 async function start() {
+  setupCredits(element<HTMLDialogElement>('credits'), element('open-credits'))
   const response = await fetch(`${import.meta.env.BASE_URL}data/structures.json`)
   if (!response.ok) throw new Error(`structures.json: ${response.status}`)
   const structures: Structure[] = await response.json()
@@ -17,6 +20,15 @@ async function start() {
   const store = createLayerStore(layer => viewer.load(layer))
   viewer.attach(store)
   panel = createLayersPanel(element('layers'), store)
+
+  const byId = new Map(structures.map(s => [s.id, s]))
+  const showDetails = createDetailsPanel(element('details'), {
+    isolate: id => { viewer.isolate(id); viewer.focus(id) },
+    hide: id => viewer.hide(id),
+    showAll: () => viewer.reset(),
+  })
+  viewer.onSelect(id => showDetails(id ? byId.get(id) ?? null : null))
+  showDetails(null)
 
   createSearch(element<HTMLInputElement>('search'), element('results'), structures, async s => {
     if (store.get(s.layer).opacity === 0) store.setOpacity(s.layer, 1)

@@ -11,7 +11,7 @@ State today: the private repo `diofeher/human-body` is created and linked, with 
 3. Embed or adapt the Z-Anatomy Unity app. It reuses existing features, but it's a PC app project, heavy to adapt for the web and hard to customize.
 
 ## First version
-- **Layers:** show/hide and opacity for skeleton, joints, muscles, cardiovascular, nervous, organs and lymphatic. Skin and other tissues only if the source files really contain them; confirm this first.
+- **Layers:** show/hide and opacity for skeleton, joints, muscles, cardiovascular, nervous, organs and lymphatic, plus fascia and other soft tissues (split from muscles on 2026-11-25 because they covered them). Skin and other tissues only if the source files really contain them; confirm this first.
 - **Interaction:** rotate, zoom, pan; hover and click highlight; isolate or hide a structure; search by Portuguese name; reset view.
 - **Side panel:** Portuguese name, Latin name, system, description and source. On narrow screens it moves to the bottom.
 - **Descriptions:** every structure gets a panel. Start with about 50 main structures with short original pt-BR text, drafted by AI and visibly marked "não revisado" until a qualified person reviews it. The rest show "Descrição em preparação". No automatically translated Wikipedia text.

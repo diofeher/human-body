@@ -11,7 +11,7 @@ const found: Structure[] = []
 
 for (const item of inventory) {
   if (!['MESH', 'CURVE'].includes(item.type) || item.triangles === 0 || !isStructureName(item.name)) continue
-  const layer = layerFor(item.collections)
+  const layer = layerFor(item.collections, item.name)
   if (!layer) continue
   if (isExcluded(item.name, item.collections)) excluded.push(item.name)
   else found.push(toStructure(item, layer, translations))
