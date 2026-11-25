@@ -1,0 +1,28 @@
+Os arquivos em public/models/ e public/data/ são material adaptado, compartilhado sob
+Creative Commons Atribuição-CompartilhaIgual 4.0 Internacional (CC BY-SA 4.0).
+https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt
+
+Esta licença cobre somente esses arquivos.
+
+Atribuição (arquivo License.txt de github.com/Z-Anatomy/Models-of-human-anatomy)
+- "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan"
+- "Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0"
+O documento de licença mais recente do Z-Anatomy credita o BodyParts3D como CC BY 4.0.
+
+Modelos usados como referência ou incluídos e adaptados, segundo o Z-Anatomy
+- "Brainder" e "White matter", University of Washington
+- "Cranial Nerves and Foramina", University of Dundee, CAHID, CC BY 4.0
+- "Anatomy of the Inner Ear", University of Dundee School of Medicine, CC BY-NC-SA 4.0
+- "Kidney", Lissie Cowley, CC BY-NC 4.0
+Orelha interna e rins foram removidos. As fontes não indicam quais peças vieram de cada
+modelo de referência.
+
+Autores: Kousaku Okubo (BodyParts3D), Gauthier Kervyn, Marcin Zielinski, Lluís Vinent.
+Tradução dos nomes para o português: Ana Teresa Bigio.
+
+Alterações feitas
+- Removidos: orelha interna (cóclea e vestíbulo), rins, pelve renal, vasos intrarrenais,
+  inserções musculares, regiões do corpo, rótulos e linhas de referência.
+- Curvas convertidas em malhas, subdivisão desativada, polígonos reduzidos.
+- Materiais e normais removidos; arquivos separados por camada e compactados (meshopt).
+- Nomes extraídos para structures.json; estruturas sem tradução mantêm o nome em inglês.
