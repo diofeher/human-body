@@ -56,16 +56,75 @@ export function parseTranslations(csv: string): Translations {
   return map
 }
 
+// The source list repeats the English or Latin term for these; corrected here, pending review
+const PT_FIXES: Record<string, string> = {
+  '(opponens digiti minimi muscle of foot)': '(Músculo oponente do dedo mínimo do pé)',
+  'adductor longus': 'Músculo adutor longo',
+  'chorda tympani': 'Corda do tímpano',
+  'culmen': 'Cúlmen',
+  'cuneus': 'Cúneo',
+  'ductus deferens': 'Ducto deferente',
+  'extensor carpi radialis brevis': 'Músculo extensor radial curto do carpo',
+  'extensor carpi radialis longus': 'Músculo extensor radial longo do carpo',
+  'extensor digiti minimi': 'Músculo extensor do dedo mínimo',
+  'extensor digitorum brevis': 'Músculo extensor curto dos dedos',
+  'extensor digitorum longus': 'Músculo extensor longo dos dedos',
+  'extensor digitorum': 'Músculo extensor dos dedos',
+  'extensor hallucis brevis': 'Músculo extensor curto do hálux',
+  'extensor hallucis longus': 'Músculo extensor longo do hálux',
+  'extensor indicis': 'Músculo extensor do indicador',
+  'extensor pollicis longus': 'Músculo extensor longo do polegar',
+  'falx cerebri': 'Foice do cérebro',
+  'fascia lata': 'Fáscia lata',
+  'flexor carpi radialis': 'Músculo flexor radial do carpo',
+  'flexor digitorum brevis': 'Músculo flexor curto dos dedos',
+  'flexor digitorum longus': 'Músculo flexor longo dos dedos',
+  'flexor hallucis longus': 'Músculo flexor longo do hálux',
+  'flocculus': 'Flóculo',
+  'fornix': 'Fórnice',
+  'glans penis': 'Glande do pênis',
+  'globus pallidus': 'Globo pálido',
+  'habenula': 'Habênula',
+  'incus': 'Bigorna',
+  'linea alba': 'Linha alba',
+  'nucleus proprius': 'Núcleo próprio',
+  'pons': 'Ponte',
+  'precuneus': 'Pré-cúneo',
+  'psoas major': 'Músculo psoas maior',
+  'rotatores': 'Músculos rotadores',
+  'semimembranosus bursa': 'Bolsa do músculo semimembranáceo',
+  'stria medullaris thalami': 'Estria medular do tálamo',
+  'stria terminalis': 'Estria terminal',
+  'supinator': 'Músculo supinador',
+  'talus': 'Tálus',
+  'tentorium cerebelli': 'Tentório do cerebelo',
+  'testis': 'Testículo',
+  'thalamus': 'Tálamo',
+  'vertebra t10': 'Vértebra T10',
+  'vertebra t11': 'Vértebra T11',
+}
+
+// spelled the same in Portuguese and in English or Latin
+const SAME_SPELLING = new Set(['atlas (c1)', 'cauda equina', 'declive', 'olive', 'pleura', 'putamen', 'retina', 'ulna', 'ureter'])
+
 export function toStructure(item: { name: string }, layer: LayerId, translations: Translations): Structure {
   const { base, side } = parseName(item.name)
   const key = base.toLowerCase()
   const entry = translations.get(key) ?? translations.get(key.replace(/\*/g, ''))
   const clean = (s: string) => s.replace(/\*/g, '').trim()
-  const namePt = clean(entry?.pt ?? '')
+  const latin = clean(entry?.latin ?? '')
+  const listed = clean(entry?.pt ?? '')
+  const englishKey = clean(key)
+  const fixed = Object.hasOwn(PT_FIXES, englishKey) ? PT_FIXES[englishKey] : null
+  // accents matter: "Tíbia" is a translation of "Tibia"
+  const copied = [englishKey, latin.toLowerCase()].includes(listed.toLowerCase()) && !SAME_SPELLING.has(englishKey)
+  let namePt = fixed ?? (copied ? '' : listed)
+  // "Nodus/Nodi" in Latin means a lymph node, which pt-BR calls "linfonodo"
+  if (/^\(?Nod(us|i)\b/.test(latin)) namePt = namePt.replace(/Nódulo/g, 'Linfonodo').replace(/nódulo/g, 'linfonodo')
   return {
     id: '', sourceName: item.name, layer, side,
     namePt: namePt || clean(base),
-    nameLatin: clean(entry?.latin ?? '') || null,
+    nameLatin: latin || null,
     translated: namePt !== '',
   }
 }

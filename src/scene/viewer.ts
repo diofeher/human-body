@@ -8,6 +8,7 @@ import type { LayerStore } from '../state/layers.ts'
 import { LAYER_COLORS } from '../ui/labels.ts'
 import { loadLayer } from './loader.ts'
 import { isClick, pickable } from './picking.ts'
+import { isShown, layerWasTurnedOn } from './visibility.ts'
 
 export function createViewer(container: HTMLElement, onProgress: (layer: LayerId, fraction: number) => void) {
   const renderer = new WebGLRenderer({ antialias: true, alpha: true })
@@ -45,12 +46,7 @@ export function createViewer(container: HTMLElement, onProgress: (layer: LayerId
   }
   controls.addEventListener('change', render)
 
-  const isShown = (id: string) => {
-    const state = store!.get(layerOf.get(id)!)
-    if (hidden.has(id)) return false
-    if (isolated) return id === isolated
-    return state.visible && state.opacity > 0
-  }
+  const shown = (id: string) => isShown(id, store!.get(layerOf.get(id)!), hidden, isolated)
 
   function refresh() {
     if (!store) return
@@ -61,7 +57,7 @@ export function createViewer(container: HTMLElement, onProgress: (layer: LayerId
       Object.assign(m, { opacity, transparent, depthWrite: !transparent })
     }
     for (const [id, mesh] of meshes) {
-      mesh.visible = isShown(id)
+      mesh.visible = shown(id)
       mesh.material = id === selected ? selectedMaterial : id === hovered ? hoverMaterial : layerMaterials.get(layerOf.get(id)!)!
     }
     render()
@@ -139,10 +135,16 @@ export function createViewer(container: HTMLElement, onProgress: (layer: LayerId
     },
     attach(layers: LayerStore) {
       store = layers
+      const visibleLayers = () => new Set<string>(LAYER_IDS.filter(id => layers.get(id).visible))
+      let before = visibleLayers()
       layers.subscribe(() => {
+        const after = visibleLayers()
+        // asking for another layer means leaving isolation, or nothing would appear
+        if (layerWasTurnedOn(before, after)) isolated = null
+        before = after
         refresh()
         // a selection in a layer the person switched off is dropped
-        if (selected && meshes.has(selected) && !isShown(selected)) select(null)
+        if (selected && meshes.has(selected) && !shown(selected)) select(null)
       })
     },
     select,

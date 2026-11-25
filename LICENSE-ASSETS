@@ -26,4 +26,6 @@ Alterações feitas
 - Curvas convertidas em malhas, subdivisão desativada, polígonos reduzidos.
 - Fáscias, bolsas, bainhas e tecidos semelhantes separados dos músculos em uma camada própria.
 - Materiais e normais removidos; arquivos separados por camada e compactados (meshopt).
+- Nomes em português de Translations0.txt (github.com/LluisV/Z-Anatomy, CC BY-SA 4.0);
+  alguns termos corrigidos e linfonodos renomeados.
 - Nomes extraídos para structures.json; estruturas sem tradução mantêm o nome em inglês.

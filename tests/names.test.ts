@@ -79,3 +79,23 @@ test('fascia and other soft tissues are split from the muscles', () => {
     expect(layerFor(muscles, n), n).toBe('musculos')
   expect(layerFor(['8: Visceral systems'], 'Synovial sheaths.l')).toBe('orgaos')
 })
+
+const row = (en: string, latin: string, pt: string) => parseTranslations(`English;Latin;Français;Español;Portugues\n${en};${latin};x;x;${pt}`)
+
+test('known English or Latin leftovers get a Portuguese name', () => {
+  for (const [en, pt] of [['Thalamus', 'Tálamo'], ['Pons', 'Ponte'], ['Testis', 'Testículo'], ['Incus', 'Bigorna'], ['Fascia lata', 'Fáscia lata']])
+    expect(toStructure({ name: en }, 'nervoso', row(en, en, en))).toMatchObject({ namePt: pt, translated: true })
+})
+test('a name copied from English or Latin is flagged as untranslated', () => {
+  expect(toStructure({ name: 'Some thing' }, 'orgaos', row('Some thing', 'Res quaedam', 'Some thing')).translated).toBe(false)
+  expect(toStructure({ name: 'Some thing' }, 'orgaos', row('Some thing', 'Res quaedam', 'res quaedam')).translated).toBe(false)
+})
+test('identical spellings that are correct Portuguese stay translated', () => {
+  expect(toStructure({ name: 'Retina.l' }, 'nervoso', row('Retina', 'Retina', 'Retina')).translated).toBe(true)
+  expect(toStructure({ name: 'Tibia.l' }, 'esqueleto', row('Tibia', 'Tibia', 'Tíbia')).translated).toBe(true)
+})
+test('lymph nodes are called linfonodos', () => {
+  expect(toStructure({ name: 'Central axillary nodes' }, 'linfatico', row('Central axillary nodes', 'Nodi axillares centrales', 'Nódulos axilares centrais')).namePt).toBe('Linfonodos axilares centrais')
+  expect(toStructure({ name: '(Lacunar node)' }, 'linfatico', row('(Lacunar node)', '(Nodus lacunaris)', '(Nódulo lacunar)')).namePt).toBe('(Linfonodo lacunar)')
+  expect(toStructure({ name: 'Nodule' }, 'nervoso', row('Nodule', 'Nodulus', 'Nódulo')).namePt).toBe('Nódulo')
+})
