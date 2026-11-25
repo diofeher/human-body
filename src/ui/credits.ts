@@ -13,7 +13,7 @@ export const CREDITS_HTML = `
   <h3>Alterações feitas</h3>
   <p>Remoção da orelha interna, dos rins, da pelve renal, dos vasos intrarrenais, das inserções musculares, das regiões do corpo, de rótulos e de linhas de referência; conversão de curvas em malhas; redução de polígonos; remoção de materiais; separação em camadas (com fáscias e tecidos semelhantes separados dos músculos), compactação e extração dos nomes.</p>
   <h3>Licença</h3>
-  <p>Os modelos convertidos e os dados adaptados são compartilhados sob <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>. Os autores do Z-Anatomy pedem que o código do aplicativo também seja compartilhado; o endereço do código será publicado aqui antes de o site ir ao ar.</p>
+  <p>Os modelos convertidos e os dados adaptados são compartilhados sob <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>. O código do aplicativo também é compartilhado sob CC BY-SA 4.0, como pedem os autores do Z-Anatomy: <a href="https://github.com/diofeher/human-body">código-fonte no GitHub</a>.</p>
   <form method="dialog"><button>Fechar</button></form>`
 
 export function setupCredits(dialog: HTMLDialogElement, openButton: HTMLElement) {

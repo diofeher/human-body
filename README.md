@@ -24,8 +24,11 @@ Requer Blender (`brew install --cask blender`).
 Ficam em `src/data/descriptions.ts`, redigidas com IA. Marque `reviewed: true` somente após
 revisão por pessoa qualificada.
 
+## Publicação
+O workflow `.github/workflows/pages.yml` testa, gera e publica o site no GitHub Pages a cada
+push em `main`: https://diofeher.github.io/human-body/
+
 ## Licenças
-- Modelos e dados (`public/models`, `public/data`): CC BY-SA 4.0, veja `LICENSE-ASSETS`.
-- Código: **ainda sem arquivo de licença**. Os autores do Z-Anatomy pedem que o código de um
-  aplicativo que lê o modelo também seja compartilhado. Antes de publicar o site, defina a
-  licença do código, torne o repositório público e coloque o link na tela de créditos.
+O projeto, incluindo o código, é compartilhado sob CC BY-SA 4.0 (arquivo `LICENSE`), como
+pedem os autores do Z-Anatomy para aplicativos que leem o modelo. Atribuições dos modelos e
+dados em `LICENSE-ASSETS`. Bibliotecas de terceiros mantêm suas próprias licenças.

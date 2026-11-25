@@ -26,6 +26,7 @@ State today: the private repo `diofeher/human-body` is created and linked, with 
 - Converted models and adapted data are CC BY-SA 4.0 (`LICENSE-ASSETS`).
 - The Z-Anatomy licence document's FAQ says an app made to read the model must share its code. The owner accepted this on 2026-11-25 (BodyParts3D only was checked and rejected: large gaps in nerves, lymphatics, ligaments, lungs and liver). The source must be public before the site is published. The repo stays private during development. The code licence file is added after checking which licence meets the "same licence" wording, and telling the owner.
 - The published site links to its source code from the credits page once the source is public.
+- 2026-11-25: owner approved making the repo public, licensing the code CC BY-SA 4.0 and deploying to GitHub Pages (this replaces "no public deployment").
 - Page states it is educational and not medical advice.
 
 ## Parts
