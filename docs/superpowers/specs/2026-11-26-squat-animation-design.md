@@ -40,7 +40,7 @@ Also rejected: simulating muscle deformation (far more work) and pre-rendered vi
 The user chose 1, saw a throwaway test of it, asked for its flaws to be fixed, and approved the result.
 
 ## Muscles
-Exact `sourceName` values in `public/data/structures.json`, each with `.r` and `.l`. The `.r` names were checked; confirm every `.l`.
+Exact `sourceName` values in `public/data/structures.json`, each with `.r` and `.l`. All are present, with one irregular name: there is no `Iliocostalis colli muscle.l`; the data has `Iliocostalis colli muscle` with no suffix. Confirm by its position that it is the left one.
 
 | Group (label on screen) | Highlight | Pieces |
 |---|---|---|
