@@ -13,3 +13,8 @@ test('credits link the public source code and state its licence', () => {
   expect(CREDITS_HTML).toContain('O código do aplicativo')
   expect(CREDITS_HTML).not.toContain('antes de o site ir ao ar')
 })
+
+test('credits say the exercise models were animated and deformed', () => {
+  expect(CREDITS_HTML).toMatch(/animação/)
+  expect(CREDITS_HTML).toMatch(/deformados/)
+})

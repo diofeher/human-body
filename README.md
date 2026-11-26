@@ -20,6 +20,12 @@ Requer Blender (`brew install --cask blender`).
 
 `--disable-autoexec` impede a execução de scripts contidos no arquivo baixado.
 
+## Exercícios
+`#agachamento` abre a animação. Ângulos, tempos, orientações e músculos ficam em
+`src/exercises/squat.json`; depois de mudar ângulos ou músculos, rode
+`tools/convert/build-exercise.sh` (requer os arquivos de `fetch.sh`). O conteúdo ainda não foi
+revisado: marque `reviewed: true` somente após revisão por pessoa qualificada.
+
 ## Descrições
 Ficam em `src/data/descriptions.ts`, redigidas com IA. Marque `reviewed: true` somente após
 revisão por pessoa qualificada.

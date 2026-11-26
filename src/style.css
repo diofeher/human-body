@@ -43,3 +43,6 @@ dialog::backdrop { background: rgb(0 0 0 / .6); }
   #controls { grid-row: 3; }
   aside { overflow: visible; }
 }
+main[hidden], #exercise[hidden], .header-link[hidden] { display: none; }
+.header-link { color: var(--text); text-decoration: none; background: #263043; border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; }
+.header-link:hover { border-color: var(--accent); }

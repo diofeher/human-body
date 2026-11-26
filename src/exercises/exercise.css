@@ -1,0 +1,54 @@
+#exercise { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.stage { display: flex; flex-direction: column; gap: 6px; padding: 6px 12px; min-height: 0; }
+.exercise-title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.exercise-title a { color: var(--accent); }
+.exercise-title h2 { font-size: 1.1rem; text-transform: none; letter-spacing: 0; color: var(--text); margin: 0; }
+.exercise-view { position: relative; height: 38dvh; flex: none; overflow: hidden; touch-action: none; border-radius: 8px; background: radial-gradient(circle at 50% 35%, #2a3344, var(--bg) 70%); }
+.exercise-view canvas { display: block; position: absolute; inset: 0; cursor: grab; }
+.exercise-status { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; z-index: 1; }
+.exercise-status:empty { display: none; }
+.angle-readout { position: absolute; top: 8px; left: 8px; margin: 0; display: grid; grid-template-columns: auto auto; gap: 0 8px; pointer-events: none; font-size: .75rem; padding: 4px 8px; border-radius: 6px; background: rgb(17 21 28 / .8); border: 1px solid var(--line); }
+.angle-readout dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: .85rem; }
+.speeds { display: flex; gap: 4px; }
+.speeds button[aria-pressed=true] { border-color: var(--accent); background: #17405a; }
+.phase-bar { display: flex; gap: 3px; }
+.phase-bar button { background: none; border: 0; border-top: 4px solid var(--line); border-radius: 0; padding: 4px 0; font-size: .8rem; min-width: 56px; }
+.phase-bar button[aria-current=true] { border-top-color: var(--accent); font-weight: 700; }
+.cards { flex: 1; min-height: 0; overflow-y: auto; padding: 4px 12px 16px; position: relative; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; }
+.card h3 { margin: 0; font-size: 1rem; }
+.card h3 button { width: 100%; text-align: left; background: none; border: 0; padding: 10px 12px; }
+.card-body { display: none; padding: 0 12px 12px; }
+.card.active { border-color: var(--accent); }
+.card.active .card-body { display: block; }
+.card-body ul { list-style: disc; padding-left: 20px; margin: 0 0 8px; }
+.card-body h4 { margin: 8px 0 4px; font-size: .85rem; }
+.card-body h4 + ul { list-style: none; padding-left: 0; font-size: .85rem; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+.mistakes { background: var(--panel); border-radius: 8px; padding: 10px 12px; }
+.mistakes summary { cursor: pointer; }
+.mistakes dt { font-weight: 700; margin-top: 8px; }
+.mistakes dd { margin: 0; }
+.exercise-load-error { padding: 16px; }
+@media (min-width: 801px) {
+  #exercise { flex-direction: row; }
+  .stage { flex: 1; min-width: 0; }
+  .exercise-view { flex: 1; height: auto; min-height: 0; }
+  .cards { flex: none; width: 380px; padding-top: 8px; }
+}
+/* short screens, such as a phone on its side */
+@media (max-height: 520px) and (max-width: 800px) {
+  #exercise { overflow-y: auto; }
+  .exercise-view { height: 70vh; flex: none; }
+  .cards { flex: none; overflow: visible; }
+}
+/* on a phone the header shrinks, so the active card has room */
+@media (max-width: 800px) {
+  body:has(#exercise:not([hidden])) header { gap: 4px 8px; padding: 6px 12px; }
+  body:has(#exercise:not([hidden])) header h1 { font-size: .95rem; }
+  body:has(#exercise:not([hidden])) header p { order: 3; width: 100%; font-size: .72rem; margin: 0; }
+  body:has(#exercise:not([hidden])) header button { margin-left: auto; font-size: .72rem; padding: 2px 8px; }
+  .exercise-title h2 { font-size: 1rem; }
+  .controls button { padding: 4px 10px; }
+}

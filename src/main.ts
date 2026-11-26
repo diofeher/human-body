@@ -9,6 +9,27 @@ import { setupCredits } from './ui/credits.ts'
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 
+let exercise: Promise<{ open(): void; close(): void }> | null = null
+function route() {
+  const active = location.hash === '#agachamento'
+  document.querySelector('main')!.hidden = active
+  element('open-exercise').hidden = active
+  element('exercise').hidden = !active
+  if (!active) {
+    void exercise?.then(screen => screen.close())
+    return
+  }
+  exercise ??= import('./exercises/screen.ts').then(m => m.createExerciseScreen(element('exercise')))
+  // the hash may have changed again while the code was loading
+  exercise.then(screen => (location.hash === '#agachamento' ? screen.open() : screen.close()), error => {
+    console.error(error)
+    exercise = null
+    element('exercise').innerHTML = '<p class="exercise-load-error">Não foi possível abrir o exercício. Recarregue a página.</p>'
+  })
+}
+window.addEventListener('hashchange', route)
+route()
+
 async function start() {
   setupCredits(element<HTMLDialogElement>('credits'), element('open-credits'))
   const response = await fetch(`${import.meta.env.BASE_URL}data/structures.json`)
