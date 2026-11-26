@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import squatJson from '../src/exercises/squat.json'
 import type { Exercise } from '../src/exercises/types'
-import { advance, anglesAt, blend, depthAt, duration, phaseAt, phaseStart, wrapTime } from '../src/exercises/timeline'
+import { advance, blend, depthAt, duration, phaseAt, phaseStart, valueAt, wrapTime } from '../src/exercises/timeline'
 
 const squat = squatJson as Exercise
 
@@ -22,9 +22,10 @@ test('depth goes down, holds and comes back', () => {
   expect(depthAt(squat, 5.5)).toBeCloseTo(0.5)
 })
 
-test('angles are flexion from standing', () => {
-  expect(anglesAt(squat, 0)).toEqual({ knee: 0, hip: 0, ankle: 0 })
-  expect(anglesAt(squat, 1)).toEqual({ knee: 112, hip: 117, ankle: 30 })
+test('shown values are blended between stored depths', () => {
+  expect(valueAt([0, 50, 100], 0)).toBe(0)
+  expect(valueAt([0, 50, 100], 0.75)).toBe(75)
+  expect(valueAt([0, 50, 100], 1)).toBe(100)
 })
 
 test('blend picks the two stored depths around a value', () => {

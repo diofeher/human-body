@@ -10,10 +10,14 @@ Condição declarada pelos autores: o aplicativo que lê o modelo também precis
 
 Rode `tools/convert/fetch.sh` para baixar.
 
-## Animação do agachamento
+## Animações dos exercícios
 
 `Z-Biomechanics.7z` (mesmo repositório e commit dos modelos): usamos somente as posições de repouso
 das articulações do quadril, joelho, tornozelo e ombro, lidas do objeto `Armature` e gravadas em
 `exercise.py`. O texto de licença do arquivo cita "BodyParts3D, © The Database Center for Life Science
 licensed under CC Attribution-Share Alike 2.1 Japan", modificado por Z-Anatomy. Os movimentos do
-arquivo não são usados. Gere com `tools/convert/build-exercise.sh` (cerca de 5 minutos).
+arquivo não são usados. Gere com `tools/convert/build-exercise.sh` (os três juntos levam cerca de 20 minutos).
+
+As posições do cotovelo, do punho, das extremidades do eixo de pronação (cabeça do rádio e ponta
+da ulna) e da almofada do pé foram estimadas a partir da geometria dos ossos do atlas em `Startup.blend`;
+não vêm do `Z-Biomechanics`.

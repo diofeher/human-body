@@ -1,4 +1,8 @@
-#exercise { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+#exercise, .exercise-screen { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.exercise-screen[hidden] { display: none; }
+.exercise-nav { display: flex; gap: 6px; font-size: .8rem; flex-wrap: wrap; }
+.exercise-nav a { color: var(--text); text-decoration: none; padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; }
+.exercise-nav a[aria-current=page] { border-color: var(--accent); background: #17405a; }
 .stage { display: flex; flex-direction: column; gap: 6px; padding: 6px 12px; min-height: 0; }
 .exercise-title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .exercise-title a { color: var(--accent); }
@@ -32,14 +36,14 @@
 .mistakes dd { margin: 0; }
 .exercise-load-error { padding: 16px; }
 @media (min-width: 801px) {
-  #exercise { flex-direction: row; }
+  .exercise-screen { flex-direction: row; }
   .stage { flex: 1; min-width: 0; }
   .exercise-view { flex: 1; height: auto; min-height: 0; }
   .cards { flex: none; width: 380px; padding-top: 8px; }
 }
 /* short screens, such as a phone on its side */
 @media (max-height: 520px) and (max-width: 800px) {
-  #exercise { overflow-y: auto; }
+  .exercise-screen { overflow-y: auto; }
   .exercise-view { height: 70vh; flex: none; }
   .cards { flex: none; overflow: visible; }
 }

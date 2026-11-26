@@ -1,14 +1,23 @@
 import './exercise.css'
 import squat from './squat.json'
+import lunge from './lunge.json'
+import pushup from './pushup.json'
 import type { Exercise } from './types.ts'
 import { advance, depthAt, phaseAt, phaseStart } from './timeline.ts'
 import { createPlayer, ROLE_COLORS, type Player } from './player.ts'
 
-const exercise = squat as Exercise
+/** keyed by the URL hash */
+export const EXERCISES: Record<string, Exercise> = {
+  agachamento: squat as Exercise,
+  avanco: lunge as Exercise,
+  flexao: pushup as Exercise,
+}
 const ROLE_LABELS = { principal: 'Motores principais', apoio: 'Apoio' } as const
 const SPEEDS = [[0.5, '0,5×'], [1, '1×']] as const
 
-export function createExerciseScreen(root: HTMLElement) {
+export function createExerciseScreen(root: HTMLElement, exercise: Exercise) {
+  const links = Object.values(EXERCISES).map(other =>
+    `<a href="#${other.id}"${other.id === exercise.id ? ' aria-current="page"' : ''}>${other.name}</a>`).join('')
   const muscles = (['principal', 'apoio'] as const).map(role => `
     <h4><span class="dot" style="background:${ROLE_COLORS[role]}"></span>${ROLE_LABELS[role]}</h4>
     <ul>${exercise.groups.filter(g => g.role === role).map(g => `<li><strong>${g.label}.</strong> ${g.note}</li>`).join('')}</ul>`).join('')
@@ -20,6 +29,7 @@ export function createExerciseScreen(root: HTMLElement) {
         <h2>${exercise.name}</h2>
         ${exercise.reviewed ? '' : '<span class="badge">não revisado</span>'}
       </div>
+      <nav class="exercise-nav" aria-label="Exercícios">${links}</nav>
       <div class="exercise-view"><div class="exercise-status" role="status"></div></div>
       <div class="controls">
         <button type="button" class="play" disabled>▶ Reproduzir</button>

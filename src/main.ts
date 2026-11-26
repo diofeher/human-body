@@ -9,23 +9,36 @@ import { setupCredits } from './ui/credits.ts'
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 
-let exercise: Promise<{ open(): void; close(): void }> | null = null
+type Screen = { open(): void; close(): void }
+const EXERCISE_HASHES = ['#agachamento', '#avanco', '#flexao']
+/** one screen per exercise, built the first time it is opened */
+const screens = new Map<string, Promise<Screen>>()
+
 function route() {
-  const active = location.hash === '#agachamento'
+  const hash = location.hash
+  const active = EXERCISE_HASHES.includes(hash)
   document.querySelector('main')!.hidden = active
   element('open-exercise').hidden = active
   element('exercise').hidden = !active
-  if (!active) {
-    void exercise?.then(screen => screen.close())
-    return
+  for (const [other, screen] of screens) if (other !== hash) void screen.then(s => s.close())
+  for (const box of element('exercise').children) (box as HTMLElement).hidden = box.id !== `screen-${hash.slice(1)}`
+  if (!active) return
+  let screen = screens.get(hash)
+  if (!screen) {
+    const box = document.createElement('div')
+    box.id = `screen-${hash.slice(1)}`
+    box.className = 'exercise-screen'
+    element('exercise').append(box)
+    screen = import('./exercises/screen.ts').then(m => m.createExerciseScreen(box, m.EXERCISES[hash.slice(1)]))
+    screens.set(hash, screen)
+    screen.catch(error => {
+      console.error(error)
+      screens.delete(hash)
+      box.innerHTML = '<p class="exercise-load-error">Não foi possível abrir o exercício. Recarregue a página.</p>'
+    })
   }
-  exercise ??= import('./exercises/screen.ts').then(m => m.createExerciseScreen(element('exercise')))
   // the hash may have changed again while the code was loading
-  exercise.then(screen => (location.hash === '#agachamento' ? screen.open() : screen.close()), error => {
-    console.error(error)
-    exercise = null
-    element('exercise').innerHTML = '<p class="exercise-load-error">Não foi possível abrir o exercício. Recarregue a página.</p>'
-  })
+  screen.then(s => (location.hash === hash ? s.open() : s.close()), () => {})
 }
 window.addEventListener('hashchange', route)
 route()

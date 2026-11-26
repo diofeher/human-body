@@ -3,11 +3,47 @@
  "name": "Agachamento",
  "reviewed": false,
  "depths": 11,
- "maxAngles": {
+ "motion": {
+  "type": "squat",
   "shank": 30,
   "thigh": 82,
   "trunk": 35,
-  "arm": 90
+  "arm": 90,
+  "pronation": 150
+ },
+ "solids": [
+  "Hip bone.r",
+  "Femur.r",
+  "Tibia.r",
+  "Fibula.r",
+  "Patella.r",
+  "Calcaneus.r"
+ ],
+ "camera": {
+  "target": [
+   0,
+   0.78,
+   0.05
+  ],
+  "direction": [
+   -1,
+   0.12,
+   0.55
+  ],
+  "distance": 3.4,
+  "renderScale": 1.8,
+  "renderViews": {
+   "side": [
+    -1,
+    0,
+    0
+   ],
+   "back": [
+    -0.6,
+    0.8,
+    0.1
+   ]
+  }
  },
  "phases": [
   {

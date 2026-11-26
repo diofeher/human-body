@@ -6,11 +6,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js'
 import { muscleNode, type Exercise, type ExerciseManifest, type Segment } from './types.ts'
-import { anglesAt, blend } from './timeline.ts'
+import { blend, valueAt } from './timeline.ts'
 
 export const ROLE_COLORS = { principal: '#e0523c', apoio: '#4f8fe0' } as const
 const BONE_COLOR = '#e8dcc0'
-const JOINTS = [['hip', 'Quadril'], ['knee', 'Joelho'], ['ankle', 'Tornozelo']] as const
 
 /** xyz of an attribute as plain floats, whatever its storage (the asset is quantized) */
 function floats(attribute: BufferGeometry['attributes'][string]) {
@@ -22,7 +21,7 @@ function floats(attribute: BufferGeometry['attributes'][string]) {
 /** a muscle whose shape is blended on the CPU, so the lighting follows the bent surface */
 function deformable(source: BufferGeometry) {
   const base = floats(source.attributes.position)
-  const shapes = [new Float32Array(base.length), ...(source.morphAttributes.position ?? []).map(floats)]
+  const shapes = (source.morphAttributes.position ?? []).map(floats)
   const position = new BufferAttribute(base.slice(), 3)
   const geometry = new BufferGeometry().setAttribute('position', position)
   geometry.setIndex(source.index)
@@ -41,12 +40,13 @@ function deformable(source: BufferGeometry) {
 
 export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   const url = (file: string) => `${import.meta.env.BASE_URL}exercises/${file}`
+  const asset = exercise.motion.type
   const [manifest, gltf] = await Promise.all([
-    fetch(url('squat.json')).then(async response => {
-      if (!response.ok) throw new Error(`squat.json: ${response.status}`)
+    fetch(url(`${asset}.json`)).then(async response => {
+      if (!response.ok) throw new Error(`${asset}.json: ${response.status}`)
       return (await response.json()) as ExerciseManifest
     }),
-    new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(url('squat.glb')),
+    new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(url(`${asset}.glb`)),
   ])
 
   const material = (color: string) => new MeshStandardMaterial({ color: new Color(color), roughness: 0.75, side: DoubleSide })
@@ -61,14 +61,16 @@ export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   left.scale.x = -1 // the movement is symmetrical, so the left side is the right side mirrored
   const midline = new Group()
   /** groups that move rigidly with one bone segment */
-  const riders: { holder: Group; segment: Segment }[] = []
+  const riders: { holder: Group; frames: number[][] }[] = []
   const shapes: ReturnType<typeof deformable>[] = []
   const support: Mesh[] = []
   let triangles = 0
 
+  const leftFrames = manifest.leftSegments ?? manifest.segments
+
   function place(name: string, parents: Group[], look: MeshStandardMaterial, segment: Segment | null) {
     const source = found.get(name)
-    if (!source) throw new Error(`missing node in squat.glb: ${name}`)
+    if (!source) throw new Error(`missing node in ${asset}.glb: ${name}`)
     let geometry = source.geometry
     if (segment === null) {
       const shape = deformable(source.geometry)
@@ -85,7 +87,7 @@ export async function createPlayer(container: HTMLElement, exercise: Exercise) {
         holder.matrixAutoUpdate = false
         holder.add(mesh)
         parent.add(holder)
-        riders.push({ holder, segment })
+        riders.push({ holder, frames: (parent === left ? leftFrames : manifest.segments)[segment] })
       }
       triangles += (geometry.index?.count ?? 0) / 3
       return mesh
@@ -97,7 +99,14 @@ export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   place('bone-midline', [midline], materials.bone, 'trunk')
   for (const group of exercise.groups) {
     for (const piece of group.pieces) {
-      const meshes = place(muscleNode(piece.name), [right, left], materials[group.role], piece.kind === 'trunk' ? 'trunk' : null)
+      const node = muscleNode(piece.name)
+      const look = materials[group.role]
+      // two-sided movements ship a separate shape for each deforming left muscle
+      const meshes = piece.kind === 'trunk'
+        ? place(node, [right, left], look, 'trunk')
+        : manifest.leftSegments
+          ? [...place(node, [right], look, null), ...place(`left-${node}`, [left], look, null)]
+          : place(node, [right, left], look, null)
       if (group.role === 'apoio') support.push(...meshes)
     }
   }
@@ -108,12 +117,12 @@ export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   // a corner readout, so the numbers never cover the joints and muscles
   const readout = document.createElement('dl')
   readout.className = 'angle-readout'
-  const values = JOINTS.map(([joint, text]) => {
+  const values = manifest.angles.map(({ label, values: stored }) => {
     const term = document.createElement('dt')
-    term.textContent = text
+    term.textContent = label
     const element = document.createElement('dd')
     readout.append(term, element)
-    return { joint, element }
+    return { stored, element }
   })
   container.appendChild(readout)
 
@@ -125,10 +134,10 @@ export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   camera.add(light)
   scene.add(camera)
   const controls = new OrbitControls(camera, renderer.domElement)
-  controls.target.set(0, 0.78, 0.05)
+  controls.target.fromArray(exercise.camera.target)
   // front quarter view from the right side, where the angle labels are
-  const homeDirection = new Vector3(-1, 0.12, 0.55).normalize()
-  camera.position.copy(controls.target).addScaledVector(homeDirection, 3.4)
+  const homeDirection = new Vector3().fromArray(exercise.camera.direction).normalize()
+  camera.position.copy(controls.target).addScaledVector(homeDirection, exercise.camera.distance)
   controls.update()
 
   let active = true
@@ -141,12 +150,11 @@ export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   controls.addEventListener('change', render)
 
   function setDepth(value: number) {
-    const angles = anglesAt(exercise, value)
-    for (const { joint, element } of values) element.textContent = `${angles[joint]}°`
+    for (const { stored, element } of values) element.textContent = `${valueAt(stored, value)}°`
     const { a, b, mix } = blend(value, manifest.depths)
     // element-wise blending matches the straight-line blending of the muscle shapes
-    for (const { holder, segment } of riders) {
-      const [from, to] = [manifest.segments[segment][a], manifest.segments[segment][b]]
+    for (const { holder, frames } of riders) {
+      const [from, to] = [frames[a], frames[b]]
       holder.matrix.fromArray(from.map((v, i) => v + (to[i] - v) * mix))
       holder.matrixWorldNeedsUpdate = true
     }

@@ -24,15 +24,6 @@ export function depthAt(ex: Exercise, t: number) {
   return phase.from + (phase.to - phase.from) * eased
 }
 
-export function anglesAt(ex: Exercise, depth: number) {
-  const { shank, thigh, trunk } = ex.maxAngles
-  return {
-    knee: Math.round((shank + thigh) * depth),
-    hip: Math.round((trunk + thigh) * depth),
-    ankle: Math.round(shank * depth),
-  }
-}
-
 export function blend(depth: number, count: number) {
   const position = Math.min(Math.max(depth, 0), 1) * (count - 1)
   const a = Math.min(Math.floor(position), count - 2)
@@ -41,3 +32,8 @@ export function blend(depth: number, count: number) {
 
 export const advance = (ex: Exercise, t: number, dtSeconds: number, speed: number) =>
   wrapTime(ex, t + Math.min(dtSeconds, MAX_STEP) * speed)
+
+export function valueAt(values: number[], depth: number) {
+  const { a, b, mix } = blend(depth, values.length)
+  return Math.round(values[a] + (values[b] - values[a]) * mix)
+}

@@ -1,0 +1,193 @@
+{
+ "id": "flexao",
+ "name": "Flexão de braços",
+ "reviewed": false,
+ "depths": 11,
+ "motion": {
+  "type": "pushup",
+  "topRise": 20.4,
+  "bottomRise": 4.5,
+  "handX": -0.25,
+  "handY": 0.02,
+  "wristZ": 0.045,
+  "elbowPoint": [
+   -0.7,
+   1,
+   0.35
+  ]
+ },
+ "solids": [
+  "Humerus.r",
+  "Scapula.r",
+  "Clavicle.r",
+  "Ulna.r"
+ ],
+ "camera": {
+  "target": [
+   0,
+   0.28,
+   0.65
+  ],
+  "direction": [
+   -1,
+   0.35,
+   0.45
+  ],
+  "distance": 3.6,
+  "renderScale": 2.0,
+  "renderViews": {
+   "side": [
+    -1,
+    0,
+    0
+   ],
+   "back": [
+    -0.6,
+    -0.4,
+    0.6
+   ]
+  }
+ },
+ "phases": [
+  {
+   "id": "inicio",
+   "label": "Início",
+   "seconds": 1,
+   "from": 0,
+   "to": 0,
+   "cues": [
+    "Mãos no chão, um pouco mais afastadas que os ombros.",
+    "Corpo em linha da cabeça aos calcanhares."
+   ]
+  },
+  {
+   "id": "descida",
+   "label": "Descida",
+   "seconds": 2,
+   "from": 0,
+   "to": 1,
+   "cues": [
+    "Dobre os cotovelos, apontando-os para trás e para os lados.",
+    "Desça o peito mantendo o corpo em linha."
+   ]
+  },
+  {
+   "id": "fundo",
+   "label": "Fundo",
+   "seconds": 0.8,
+   "from": 1,
+   "to": 1,
+   "cues": [
+    "Peito perto do chão, até onde mantiver o controle.",
+    "Quadril sem cair nem subir."
+   ]
+  },
+  {
+   "id": "subida",
+   "label": "Subida",
+   "seconds": 1.7,
+   "from": 1,
+   "to": 0,
+   "cues": [
+    "Empurre o chão com as mãos.",
+    "Estenda os cotovelos mantendo o tronco firme."
+   ]
+  }
+ ],
+ "mistakes": [
+  {
+   "title": "Quadril caindo",
+   "text": "Contraia o abdômen e os glúteos. Se precisar, apoie os joelhos ou eleve as mãos."
+  },
+  {
+   "title": "Quadril alto demais",
+   "text": "Volte a alinhar cabeça, quadril e calcanhares."
+  },
+  {
+   "title": "Cotovelos muito abertos",
+   "text": "Aproxime um pouco os cotovelos do tronco, apontando-os na diagonal para trás."
+  },
+  {
+   "title": "Cabeça caída",
+   "text": "Mantenha o pescoço alinhado com a coluna e o olhar no chão, um pouco à frente das mãos."
+  }
+ ],
+ "groups": [
+  {
+   "id": "peitoral",
+   "label": "Peitoral maior",
+   "role": "principal",
+   "note": "Leva os braços à frente do corpo.",
+   "pieces": [
+    {
+     "name": "Clavicular head of pectoralis major muscle",
+     "kind": "trunkArm"
+    },
+    {
+     "name": "Sternocostal head of pectoralis major muscle",
+     "kind": "trunkArm"
+    },
+    {
+     "name": "(Abdominal part of pectoralis major muscle)",
+     "kind": "trunkArm"
+    }
+   ]
+  },
+  {
+   "id": "triceps",
+   "label": "Tríceps braquial",
+   "role": "principal",
+   "note": "Estende o cotovelo.",
+   "pieces": [
+    {
+     "name": "Long head of triceps brachii",
+     "kind": "tricepsLong"
+    },
+    {
+     "name": "Lateral head of triceps brachii",
+     "kind": "tricepsShort"
+    },
+    {
+     "name": "Medial head of triceps brachii",
+     "kind": "tricepsShort"
+    }
+   ]
+  },
+  {
+   "id": "deltoide",
+   "label": "Deltoide (parte da frente)",
+   "role": "principal",
+   "note": "Ajuda a levar o braço à frente.",
+   "pieces": [
+    {
+     "name": "Clavicular part of deltoid muscle",
+     "kind": "trunkArm"
+    }
+   ]
+  },
+  {
+   "id": "serratil",
+   "label": "Serrátil anterior",
+   "role": "apoio",
+   "note": "Ajuda a controlar a escápula.",
+   "pieces": [
+    {
+     "name": "Serratus anterior muscle",
+     "kind": "trunk"
+    }
+   ]
+  },
+  {
+   "id": "abdomen",
+   "label": "Reto do abdome",
+   "role": "apoio",
+   "note": "Ajuda a manter o tronco em linha.",
+   "pieces": [
+    {
+     "name": "Rectus abdominis muscle",
+     "kind": "trunk"
+    }
+   ]
+  }
+ ]
+}

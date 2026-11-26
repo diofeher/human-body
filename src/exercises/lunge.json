@@ -1,0 +1,231 @@
+{
+ "id": "avanco",
+ "name": "Avanço parado",
+ "reviewed": false,
+ "depths": 11,
+ "motion": {
+  "type": "lunge",
+  "frontBallY": -0.44,
+  "backBallY": 0.395,
+  "top": {
+   "hipY": 0.004,
+   "hipZ": 0.76,
+   "trunk": 3,
+   "frontHeel": 0,
+   "backHeel": 35
+  },
+  "bottom": {
+   "hipY": 0.004,
+   "hipZ": 0.505,
+   "trunk": 8,
+   "frontHeel": 0,
+   "backHeel": 55
+  }
+ },
+ "solids": [
+  "Hip bone.r",
+  "Femur.r",
+  "Tibia.r",
+  "Fibula.r",
+  "Patella.r",
+  "Calcaneus.r"
+ ],
+ "camera": {
+  "target": [
+   0,
+   0.7,
+   0.0
+  ],
+  "direction": [
+   -1,
+   0.12,
+   0.35
+  ],
+  "distance": 3.4,
+  "renderScale": 1.8,
+  "renderViews": {
+   "side": [
+    -1,
+    0,
+    0
+   ],
+   "back": [
+    -0.6,
+    0.8,
+    0.1
+   ]
+  }
+ },
+ "phases": [
+  {
+   "id": "inicio",
+   "label": "Início",
+   "seconds": 1,
+   "from": 0,
+   "to": 0,
+   "cues": [
+    "Um pé à frente e outro atrás, afastados na largura do quadril.",
+    "Calcanhar de trás fora do chão; tronco ereto."
+   ]
+  },
+  {
+   "id": "descida",
+   "label": "Descida",
+   "seconds": 2.5,
+   "from": 0,
+   "to": 1,
+   "cues": [
+    "Desça em linha quase vertical, dobrando os dois joelhos.",
+    "Joelho da frente na direção do pé.",
+    "Pé da frente apoiado por inteiro."
+   ]
+  },
+  {
+   "id": "fundo",
+   "label": "Fundo",
+   "seconds": 1,
+   "from": 1,
+   "to": 1,
+   "cues": [
+    "Joelho de trás perto do chão, sem encostar com força.",
+    "Desça só até onde mantiver o equilíbrio e o controle."
+   ]
+  },
+  {
+   "id": "subida",
+   "label": "Subida",
+   "seconds": 2,
+   "from": 1,
+   "to": 0,
+   "cues": [
+    "Empurre o chão, principalmente com o pé da frente.",
+    "Suba sem inclinar o tronco para os lados.",
+    "Depois das repetições, troque a perna da frente."
+   ]
+  }
+ ],
+ "mistakes": [
+  {
+   "title": "Calcanhar da frente saindo do chão",
+   "text": "Ajuste a distância entre os pés e distribua o peso pelo pé da frente inteiro."
+  },
+  {
+   "title": "Joelho da frente caindo para dentro",
+   "text": "Procure manter o joelho alinhado com a direção do pé do mesmo lado."
+  },
+  {
+   "title": "Pés na mesma linha",
+   "text": "Afaste os pés para os lados, na largura do quadril, para ter mais equilíbrio."
+  },
+  {
+   "title": "Descer sem controle",
+   "text": "Desça mais devagar, de modo que consiga parar em qualquer ponto do movimento."
+  }
+ ],
+ "groups": [
+  {
+   "id": "quadriceps",
+   "label": "Quadríceps",
+   "role": "principal",
+   "note": "Estendem o joelho.",
+   "pieces": [
+    {
+     "name": "Rectus femoris muscle",
+     "kind": "rectus"
+    },
+    {
+     "name": "Vastus lateralis muscle",
+     "kind": "vasti"
+    },
+    {
+     "name": "Vastus medialis muscle",
+     "kind": "vasti"
+    },
+    {
+     "name": "Vastus intermedius muscle",
+     "kind": "vasti"
+    }
+   ]
+  },
+  {
+   "id": "gluteo",
+   "label": "Glúteo máximo",
+   "role": "principal",
+   "note": "Estende o quadril.",
+   "pieces": [
+    {
+     "name": "Gluteus maximus muscle",
+     "kind": "hipFemur"
+    }
+   ]
+  },
+  {
+   "id": "adutor",
+   "label": "Adutor magno",
+   "role": "principal",
+   "note": "Ajuda a estender o quadril, principalmente a partir das posições mais baixas.",
+   "pieces": [
+    {
+     "name": "Adductor magnus",
+     "kind": "hipFemur"
+    }
+   ]
+  },
+  {
+   "id": "gluteo-medio",
+   "label": "Glúteo médio",
+   "role": "apoio",
+   "note": "Ajuda a manter a pelve estável.",
+   "pieces": [
+    {
+     "name": "Gluteus medius muscle",
+     "kind": "hipFemur"
+    }
+   ]
+  },
+  {
+   "id": "isquiotibiais",
+   "label": "Isquiotibiais",
+   "role": "apoio",
+   "note": "Cruzam o quadril e o joelho.",
+   "pieces": [
+    {
+     "name": "Long head of biceps femoris",
+     "kind": "hamstring"
+    },
+    {
+     "name": "Short head of biceps femoris",
+     "kind": "bicepsShort"
+    },
+    {
+     "name": "Semitendinosus muscle",
+     "kind": "hamstring"
+    },
+    {
+     "name": "Semimembranosus muscle",
+     "kind": "hamstring"
+    }
+   ]
+  },
+  {
+   "id": "panturrilhas",
+   "label": "Panturrilhas",
+   "role": "apoio",
+   "note": "Ajudam a controlar o tornozelo.",
+   "pieces": [
+    {
+     "name": "Soleus muscle",
+     "kind": "soleus"
+    },
+    {
+     "name": "Medial head of gastrocnemius",
+     "kind": "gastroc"
+    },
+    {
+     "name": "Lateral head of gastrocnemius",
+     "kind": "gastroc"
+    }
+   ]
+  }
+ ]
+}

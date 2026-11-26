@@ -12,7 +12,7 @@ export const CREDITS_HTML = `
   <p>Nomes em português: arquivo Translations0.txt de <a href="https://github.com/LluisV/Z-Anatomy">github.com/LluisV/Z-Anatomy</a>, CC BY-SA 4.0. Alguns termos foram corrigidos neste atlas e os linfonodos foram renomeados.</p>
   <h3>Alterações feitas</h3>
   <p>Remoção da orelha interna, dos rins, da pelve renal, dos vasos intrarrenais, das inserções musculares, das regiões do corpo, de rótulos e de linhas de referência; conversão de curvas em malhas; redução de polígonos; remoção de materiais; separação em camadas (com fáscias e tecidos semelhantes separados dos músculos), compactação e extração dos nomes.</p>
-  <p>Exercícios: os modelos foram usados numa animação própria; os músculos foram deformados para acompanhar os ossos, e o lado esquerdo é um espelhamento do direito. As posições das articulações foram lidas do arquivo Z-Biomechanics (BodyParts3D, CC BY-SA 2.1 Japan, modificado por Z-Anatomy).</p>
+  <p>Exercícios: os modelos foram usados numa animação própria; os músculos foram deformados para acompanhar os ossos, e o lado esquerdo usa o espelhamento dos modelos do lado direito. As posições das articulações foram lidas do arquivo Z-Biomechanics (BodyParts3D, CC BY-SA 2.1 Japan, modificado por Z-Anatomy).</p>
   <h3>Licença</h3>
   <p>Os modelos convertidos e os dados adaptados são compartilhados sob <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>. O código do aplicativo também é compartilhado sob CC BY-SA 4.0, como pedem os autores do Z-Anatomy: <a href="https://github.com/diofeher/human-body">código-fonte no GitHub</a>.</p>
   <form method="dialog"><button>Fechar</button></form>`
