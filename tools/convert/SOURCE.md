@@ -9,3 +9,11 @@ Documento de licença: https://docs.google.com/document/d/1peWW_7IiVgTTAwcI_auv3
 Condição declarada pelos autores: o aplicativo que lê o modelo também precisa ter o código compartilhado.
 
 Rode `tools/convert/fetch.sh` para baixar.
+
+## Animação do agachamento
+
+`Z-Biomechanics.7z` (mesmo repositório e commit dos modelos): usamos somente as posições de repouso
+das articulações do quadril, joelho, tornozelo e ombro, lidas do objeto `Armature` e gravadas em
+`exercise.py`. O texto de licença do arquivo cita "BodyParts3D, © The Database Center for Life Science
+licensed under CC Attribution-Share Alike 2.1 Japan", modificado por Z-Anatomy. Os movimentos do
+arquivo não são usados. Gere com `tools/convert/build-exercise.sh` (cerca de 5 minutos).
