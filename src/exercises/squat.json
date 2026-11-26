@@ -1,0 +1,216 @@
+{
+ "id": "agachamento",
+ "name": "Agachamento",
+ "reviewed": false,
+ "depths": 11,
+ "maxAngles": {
+  "shank": 30,
+  "thigh": 82,
+  "trunk": 35,
+  "arm": 90
+ },
+ "phases": [
+  {
+   "id": "inicio",
+   "label": "Início",
+   "seconds": 1,
+   "from": 0,
+   "to": 0,
+   "cues": [
+    "Pés apoiados por inteiro, mais ou menos na largura dos ombros.",
+    "Tronco firme e olhar à frente."
+   ]
+  },
+  {
+   "id": "descida",
+   "label": "Descida",
+   "seconds": 2.5,
+   "from": 0,
+   "to": 1,
+   "cues": [
+    "Leve o quadril para trás e para baixo.",
+    "Joelhos apontando na mesma direção dos pés.",
+    "Calcanhares no chão."
+   ]
+  },
+  {
+   "id": "fundo",
+   "label": "Fundo",
+   "seconds": 1,
+   "from": 1,
+   "to": 1,
+   "cues": [
+    "Coxas próximas da posição paralela ao chão, se conseguir manter o controle.",
+    "Coluna em posição neutra e peso distribuído pelos pés."
+   ]
+  },
+  {
+   "id": "subida",
+   "label": "Subida",
+   "seconds": 2,
+   "from": 1,
+   "to": 0,
+   "cues": [
+    "Empurre o chão com os pés.",
+    "Estenda quadris e joelhos juntos.",
+    "Mantenha o tronco firme até ficar em pé."
+   ]
+  }
+ ],
+ "mistakes": [
+  {
+   "title": "Calcanhares saindo do chão",
+   "text": "Reduza a profundidade e distribua o peso pelos pés inteiros."
+  },
+  {
+   "title": "Joelhos caindo para dentro",
+   "text": "Procure manter cada joelho alinhado com a direção do pé do mesmo lado."
+  },
+  {
+   "title": "Perder a posição da coluna",
+   "text": "Desça somente até onde conseguir manter o tronco firme e a coluna em posição neutra."
+  },
+  {
+   "title": "Descer sem controle",
+   "text": "Desça mais devagar, de modo que consiga parar em qualquer ponto do movimento."
+  }
+ ],
+ "groups": [
+  {
+   "id": "quadriceps",
+   "label": "Quadríceps",
+   "role": "principal",
+   "note": "Estendem o joelho.",
+   "pieces": [
+    {
+     "name": "Rectus femoris muscle",
+     "kind": "rectus"
+    },
+    {
+     "name": "Vastus lateralis muscle",
+     "kind": "vasti"
+    },
+    {
+     "name": "Vastus medialis muscle",
+     "kind": "vasti"
+    },
+    {
+     "name": "Vastus intermedius muscle",
+     "kind": "vasti"
+    }
+   ]
+  },
+  {
+   "id": "gluteo",
+   "label": "Glúteo máximo",
+   "role": "principal",
+   "note": "Estende o quadril.",
+   "pieces": [
+    {
+     "name": "Gluteus maximus muscle",
+     "kind": "hipFemur"
+    }
+   ]
+  },
+  {
+   "id": "adutor",
+   "label": "Adutor magno",
+   "role": "principal",
+   "note": "Ajuda a estender o quadril, principalmente a partir das posições mais baixas.",
+   "pieces": [
+    {
+     "name": "Adductor magnus",
+     "kind": "hipFemur"
+    }
+   ]
+  },
+  {
+   "id": "isquiotibiais",
+   "label": "Isquiotibiais",
+   "role": "apoio",
+   "note": "Cruzam o quadril e o joelho.",
+   "pieces": [
+    {
+     "name": "Long head of biceps femoris",
+     "kind": "hamstring"
+    },
+    {
+     "name": "Short head of biceps femoris",
+     "kind": "bicepsShort"
+    },
+    {
+     "name": "Semitendinosus muscle",
+     "kind": "hamstring"
+    },
+    {
+     "name": "Semimembranosus muscle",
+     "kind": "hamstring"
+    }
+   ]
+  },
+  {
+   "id": "panturrilhas",
+   "label": "Panturrilhas",
+   "role": "apoio",
+   "note": "Ajudam a controlar o tornozelo.",
+   "pieces": [
+    {
+     "name": "Soleus muscle",
+     "kind": "soleus"
+    },
+    {
+     "name": "Medial head of gastrocnemius",
+     "kind": "gastroc"
+    },
+    {
+     "name": "Lateral head of gastrocnemius",
+     "kind": "gastroc"
+    }
+   ]
+  },
+  {
+   "id": "eretores",
+   "label": "Eretores da espinha",
+   "role": "apoio",
+   "note": "Ajudam a manter o tronco firme.",
+   "pieces": [
+    {
+     "name": "Iliocostalis colli muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Iliocostalis lumborum muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Iliocostalis thoracis muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Longissimus capitis muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Longissimus colli muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Longissimus thoracis muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Spinalis capitis muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Spinalis colli muscle",
+     "kind": "trunk"
+    },
+    {
+     "name": "Spinalis thoracis muscle",
+     "kind": "trunk"
+    }
+   ]
+  }
+ ]
+}
