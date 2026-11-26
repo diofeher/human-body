@@ -21,9 +21,10 @@ Requer Blender (`brew install --cask blender`).
 `--disable-autoexec` impede a execução de scripts contidos no arquivo baixado.
 
 ## Exercícios
-`#agachamento` abre a animação. Ângulos, tempos, orientações e músculos ficam em
-`src/exercises/squat.json`; depois de mudar ângulos ou músculos, rode
-`tools/convert/build-exercise.sh` (requer os arquivos de `fetch.sh`). O conteúdo ainda não foi
+`#agachamento`, `#avanco` e `#flexao` abrem as animações. Posições, tempos, orientações e músculos
+ficam em `src/exercises/{squat,lunge,pushup}.json`; depois de mudar `motion`, `solids` ou músculos,
+rode `tools/convert/build-exercise.sh [squat|lunge|pushup]` (requer os arquivos de `fetch.sh`).
+Com `RENDERS=<pasta>`, o script também gera imagens para conferência. O conteúdo ainda não foi
 revisado: marque `reviewed: true` somente após revisão por pessoa qualificada.
 
 ## Descrições

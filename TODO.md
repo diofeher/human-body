@@ -2,17 +2,28 @@
 
 ## Animações de exercícios com peso corporal
 
-Atualizado em 2026-11-26. Agachamento implementado no branch `feat/squat-animation` (não publicado).
-Design: `docs/superpowers/specs/2026-11-26-squat-animation-design.md`.
+Atualizado em 2026-11-26. Agachamento, avanço parado e flexão de braços implementados no branch
+`feat/squat-animation` (não mesclados em `main`).
+Design: `docs/superpowers/specs/2026-11-26-squat-animation-design.md` e
+`docs/superpowers/specs/2026-11-26-lunge-pushup-design.md`.
 
-### Pendências do agachamento
+### Pendências de todos os exercícios
 - Revisão por profissional qualificado: movimento, orientações, erros comuns e papéis dos músculos.
   Não fazer merge em `main` antes disso (o push publica o site).
 - Testar em um celular de verdade.
+- Antes de adicionar versões erradas do movimento, permitir mais de um movimento por exercício.
+
+### Pendências do agachamento
 - Acabamento: pontas dos isquiotibiais atravessam o glúteo no fundo; glúteos se encontram no meio;
-  dobra no topo do reto femoral; borda do glúteo irregular; palmas viradas para cima.
+  dobra no topo do reto femoral; borda do glúteo irregular.
 - A verificação automática compara músculos só com quadril, fêmur, tíbia, fíbula, patela e calcâneo.
-- Antes de adicionar versões erradas do movimento, permitir mais de um movimento em `squat.json`.
+
+### Pendências do avanço e da flexão
+- Conferir de perto o acabamento dos músculos em vários ângulos.
+- Na flexão, escápula e clavícula não se movem.
+- Na flexão, a verificação automática compara músculos só com úmero, escápula, clavícula e ulna
+  (não com as costelas).
+- O avanço mostra só a perna direita à frente.
 
 ## Plano original (histórico)
 
@@ -43,4 +54,4 @@ recomendada. Decidir no design quanto detalhe é necessário.
 - Verificar a licença de qualquer material novo (modelos, capturas de movimento).
 
 ### Próximo passo
-Ver o agachamento em `#agachamento` e providenciar a revisão.
+Ver `#agachamento`, `#avanco` e `#flexao` e providenciar a revisão.
