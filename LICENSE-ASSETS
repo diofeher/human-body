@@ -1,4 +1,4 @@
-Os arquivos em public/models/ e public/data/ são material adaptado, compartilhado sob
+Os arquivos em public/models/, public/data/ e public/exercises/ são material adaptado, compartilhado sob
 Creative Commons Atribuição-CompartilhaIgual 4.0 Internacional (CC BY-SA 4.0).
 https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt
 
@@ -30,3 +30,10 @@ Alterações feitas
 - Nomes em português de Translations0.txt (github.com/LluisV/Z-Anatomy, CC BY-SA 4.0);
   alguns termos corrigidos e linfonodos renomeados.
 - Nomes extraídos para structures.json; estruturas sem tradução mantêm o nome em inglês.
+
+Animação de exercícios (public/exercises/)
+- Animação própria; músculos deformados para acompanhar os ossos; o lado esquerdo é um
+  espelhamento do direito.
+- Posições das articulações lidas de Z-Biomechanics (github.com/Z-Anatomy/Models-of-human-anatomy):
+  "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution-Share Alike
+  2.1 Japan", modificado por Z-Anatomy.

@@ -47,3 +47,6 @@ dialog::backdrop { background: rgb(0 0 0 / .6); }
   #menu-close { display: block; min-height: 44px; margin: 0 0 12px auto; }
   #menu-backdrop.open { display: block; position: fixed; z-index: 1; inset: 0; background: rgb(0 0 0 / .6); }
 }
+main[hidden], #exercise[hidden], .header-link[hidden] { display: none; }
+.header-link { color: var(--text); text-decoration: none; background: #263043; border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; }
+.header-link:hover { border-color: var(--accent); }
