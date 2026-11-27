@@ -52,7 +52,9 @@
   body:has(#exercise:not([hidden])) header { gap: 4px 8px; padding: 6px 12px; }
   body:has(#exercise:not([hidden])) header h1 { font-size: .95rem; }
   body:has(#exercise:not([hidden])) header p { order: 3; width: 100%; font-size: .72rem; margin: 0; }
-  body:has(#exercise:not([hidden])) header button { margin-left: auto; font-size: .72rem; padding: 2px 8px; }
+  /* the filters menu belongs to the atlas */
+  body:has(#exercise:not([hidden])) #menu-toggle { display: none; }
+  body:has(#exercise:not([hidden])) #open-credits { margin-left: auto; font-size: .72rem; padding: 2px 8px; }
   .exercise-title h2 { font-size: 1rem; }
   .controls button { padding: 4px 10px; }
 }
