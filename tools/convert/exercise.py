@@ -284,7 +284,56 @@ def pushup_pose(p):
     return {'r': {**body, 'toes': lerp(np.eye(4), toes, into), 'arm': t_upper, 'ulna': t_lower,
                   'radius': t_radius, 'hand': t_hand}}, world, angles
 
-pose = {'squat': squat_pose, 'lunge': lunge_pose, 'pushup': pushup_pose}[MOTION['type']]
+def free_pose(p):
+    """Any exercise given as joint angles (degrees, positive = flexion) at its start and end.
+    The pelvis stays upright in the body's frame; `world` places the body so that one joint
+    (`anchor`) stays at a fixed place. A side with `plant` keeps its ankle there, foot flat."""
+    into, depth = min(p + 1, 1), max(p, 0)
+    def value(part, key):
+        a = MOTION['start'].get(part, {}).get(key, 0)
+        b = MOTION['end'].get(part, {}).get(key, a)
+        return lerp(0, lerp(a, b, depth), into)
+    anchor = MOTION['anchor']
+    joint = {'shoulder': SHOULDER, 'hip': HIP, 'ball': BALL}[anchor['joint']]
+    pitch = rot(value('body', 'pitch'))
+    segment = {'shoulder': 'trunk', 'hip': 'trunk', 'ball': 'toes'}[anchor['joint']]
+    def world_for(point):
+        return about(pitch, point, lerp(point, np.array(anchor['at'], float), into))
+    # planted feet need the world first; they are only used with an anchor on the trunk
+    assert 'plant' not in MOTION or segment == 'trunk'
+    inverse = np.linalg.inv(world_for(joint))
+    sides, angles_by_side = {}, {}
+    for side in MOTION['sides']:
+        leg, arm = ('leg', 'arm') if side == 'r' else ('leftLeg', 'leftArm')
+        if 'plant' in MOTION:
+            y, z = MOTION['plant']['ankle']
+            target = np.array([ANKLE[0], y, z])
+            ankle = lerp(ANKLE, apply(inverse, target), into)
+            shank, thigh, t_shank, t_thigh = leg_to(HIP, ankle)
+            # the foot stays flat in the room
+            turn = value('body', 'pitch')
+            t_foot = move(-turn, ANKLE, ankle)
+            t_toes = t_foot
+            knee_flex, hip_flex = shank - thigh, -thigh
+        else:
+            hip_flex, knee_flex = value(leg, 'hip'), value(leg, 'knee')
+            t_thigh = about(axis_rot((0, 1, 0), value(leg, 'abduction')) @ rot(-hip_flex), HIP, HIP)
+            t_shank = t_thigh @ move(knee_flex, KNEE, KNEE)
+            t_foot = t_shank @ move(-value(leg, 'dorsiflexion'), ANKLE, ANKLE)
+            t_toes = t_foot @ move(-value(leg, 'toes'), BALL, BALL)
+        upper = about(axis_rot((0, 1, 0), value(arm, 'abduction')) @ rot(-value(arm, 'shoulder')), SHOULDER, SHOULDER)
+        lower = upper @ move(-value(arm, 'elbow'), ELBOW, ELBOW)
+        radius = lower @ pronation(value(arm, 'pronation'))
+        hand = radius @ move(-value(arm, 'wrist'), WRIST, WRIST)
+        sides[side] = {'foot': t_foot, 'toes': t_toes, 'shank': t_shank, 'thigh': t_thigh,
+                       'patella': t_thigh @ move(knee_flex * 0.7, KNEE, KNEE), 'trunk': np.eye(4),
+                       'arm': upper, 'ulna': lower, 'radius': radius, 'hand': hand}
+        angles_by_side[side] = {'Quadril': hip_flex, 'Joelho': knee_flex, 'Ombro': value(arm, 'shoulder'),
+                                'Cotovelo': value(arm, 'elbow'), 'Tornozelo': value(leg, 'dorsiflexion')}
+    world = world_for(apply(sides['r'][segment], joint))
+    return sides, world, {label: angles_by_side['r'][label] for label in MOTION['readout']}
+
+pose = {'squat': squat_pose, 'lunge': lunge_pose, 'pushup': pushup_pose, 'free': free_pose}[MOTION['type']]
 # the squat starts at the atlas rest pose; the others first travel from it to their starting position
 START = 0 if MOTION['type'] == 'squat' else -1
 SIDES = list(pose(0)[0])

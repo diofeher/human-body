@@ -16,7 +16,9 @@ export interface Exercise {
   reviewed: boolean
   depths: number
   /** pose settings read by the exporter */
-  motion: { type: 'squat' | 'lunge' | 'pushup' }
+  motion: { type: 'squat' | 'lunge' | 'pushup' | 'free' }
+  /** name of the exported files, when it differs from the movement type */
+  asset?: string
   /** bones the exporter keeps the muscles out of */
   solids: string[]
   /** target is in the GLB's Y-up space; the render fields are only for the exporter's check images */

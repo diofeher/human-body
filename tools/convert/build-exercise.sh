@@ -4,7 +4,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 BLENDER=${BLENDER:-/Applications/Blender.app/Contents/MacOS/Blender}
-[ $# -gt 0 ] || set -- squat lunge pushup
+[ $# -gt 0 ] || set -- squat lunge pushup bridge calfraise
 mkdir -p public/exercises .cache/exercise
 for id in "$@"; do
   echo "== $id"

@@ -1,0 +1,179 @@
+{
+ "id": "ponte",
+ "name": "Ponte de glúteos",
+ "reviewed": false,
+ "depths": 11,
+ "motion": {
+  "type": "free",
+  "sides": [
+   "r"
+  ],
+  "anchor": {
+   "joint": "shoulder",
+   "at": [
+    -0.165,
+    0.55,
+    0.09
+   ]
+  },
+  "plant": {
+   "ankle": [
+    -0.27,
+    0.07
+   ]
+  },
+  "start": {
+   "body": {
+    "pitch": -91
+   },
+   "arm": {
+    "shoulder": -8
+   }
+  },
+  "end": {
+   "body": {
+    "pitch": -114
+   },
+   "arm": {
+    "shoulder": -31
+   }
+  },
+  "readout": [
+   "Quadril",
+   "Joelho"
+  ]
+ },
+ "solids": [
+  "Hip bone.r",
+  "Femur.r",
+  "Tibia.r",
+  "Fibula.r",
+  "Patella.r",
+  "Calcaneus.r"
+ ],
+ "camera": {
+  "target": [
+   0,
+   0.25,
+   0
+  ],
+  "direction": [
+   -1,
+   0.35,
+   0.45
+  ],
+  "distance": 3.6,
+  "renderScale": 2.0,
+  "renderViews": {
+   "side": [
+    -1,
+    0,
+    0
+   ],
+   "back": [
+    -0.6,
+    -0.4,
+    0.6
+   ]
+  }
+ },
+ "phases": [
+  {
+   "id": "inicio",
+   "label": "Início",
+   "seconds": 1,
+   "from": 0,
+   "to": 0,
+   "cues": [
+    "Deite de costas, joelhos dobrados e pés no chão, na largura do quadril.",
+    "Braços ao longo do corpo."
+   ]
+  },
+  {
+   "id": "subida",
+   "label": "Subida",
+   "seconds": 1.7,
+   "from": 0,
+   "to": 1,
+   "cues": [
+    "Empurre o chão com os pés.",
+    "Eleve o quadril contraindo os glúteos."
+   ]
+  },
+  {
+   "id": "topo",
+   "label": "Topo",
+   "seconds": 1,
+   "from": 1,
+   "to": 1,
+   "cues": [
+    "Ombros, quadril e joelhos quase em linha.",
+    "Não arqueie a lombar para subir mais."
+   ]
+  },
+  {
+   "id": "descida",
+   "label": "Descida",
+   "seconds": 2,
+   "from": 1,
+   "to": 0,
+   "cues": [
+    "Desça o quadril devagar.",
+    "Mantenha os pés apoiados."
+   ]
+  }
+ ],
+ "mistakes": [
+  {
+   "title": "Lombar arqueada",
+   "text": "Suba só até alinhar o quadril e contraia o abdômen."
+  },
+  {
+   "title": "Joelhos caindo para dentro",
+   "text": "Mantenha os joelhos na direção dos pés."
+  },
+  {
+   "title": "Apoio no pescoço",
+   "text": "O peso fica na parte de cima das costas e nos pés. Não vire a cabeça."
+  }
+ ],
+ "groups": [
+  {
+   "id": "gluteo",
+   "label": "Glúteo máximo",
+   "role": "principal",
+   "note": "Estende o quadril, elevando a pelve.",
+   "pieces": [
+    {
+     "name": "Gluteus maximus muscle",
+     "kind": "hipFemur"
+    }
+   ]
+  },
+  {
+   "id": "isquiotibiais",
+   "label": "Isquiotibiais",
+   "role": "apoio",
+   "note": "Ajudam a estender o quadril.",
+   "pieces": [
+    {
+     "name": "Long head of biceps femoris",
+     "kind": "hamstring"
+    },
+    {
+     "name": "Short head of biceps femoris",
+     "kind": "bicepsShort"
+    },
+    {
+     "name": "Semitendinosus muscle",
+     "kind": "hamstring"
+    },
+    {
+     "name": "Semimembranosus muscle",
+     "kind": "hamstring"
+    }
+   ]
+  }
+ ],
+ "asset": "bridge"
+}

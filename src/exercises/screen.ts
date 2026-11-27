@@ -2,6 +2,8 @@ import './exercise.css'
 import squat from './squat.json'
 import lunge from './lunge.json'
 import pushup from './pushup.json'
+import bridge from './bridge.json'
+import calfraise from './calfraise.json'
 import type { Exercise } from './types.ts'
 import { advance, depthAt, phaseAt, phaseStart } from './timeline.ts'
 import { createPlayer, ROLE_COLORS, type Player } from './player.ts'
@@ -11,6 +13,8 @@ export const EXERCISES: Record<string, Exercise> = {
   agachamento: squat as Exercise,
   avanco: lunge as Exercise,
   flexao: pushup as Exercise,
+  ponte: bridge as Exercise,
+  panturrilha: calfraise as Exercise,
 }
 const ROLE_LABELS = { principal: 'Motores principais', apoio: 'Apoio' } as const
 const SPEEDS = [[0.5, '0,5×'], [1, '1×']] as const

@@ -11,7 +11,7 @@ import { setupMenu } from './ui/menu.ts'
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 
 type Screen = { open(): void; close(): void }
-const EXERCISE_HASHES = ['#agachamento', '#avanco', '#flexao']
+const EXERCISE_HASHES = ['#agachamento', '#avanco', '#flexao', '#ponte', '#panturrilha']
 /** one screen per exercise, built the first time it is opened */
 const screens = new Map<string, Promise<Screen>>()
 
