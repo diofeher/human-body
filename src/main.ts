@@ -6,6 +6,7 @@ import { createLayersPanel } from './ui/layers-panel.ts'
 import { createSearch } from './ui/search.ts'
 import { createDetailsPanel } from './ui/details-panel.ts'
 import { setupCredits } from './ui/credits.ts'
+import { setupMenu } from './ui/menu.ts'
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 
@@ -44,6 +45,10 @@ window.addEventListener('hashchange', route)
 route()
 
 async function start() {
+  const menu = setupMenu({
+    toggle: element('menu-toggle'), close: element('menu-close'),
+    panel: element('controls'), backdrop: element('menu-backdrop'),
+  })
   setupCredits(element<HTMLDialogElement>('credits'), element('open-credits'))
   const response = await fetch(`${import.meta.env.BASE_URL}data/structures.json`)
   if (!response.ok) throw new Error(`structures.json: ${response.status}`)
@@ -65,6 +70,7 @@ async function start() {
   showDetails(null)
 
   createSearch(element<HTMLInputElement>('search'), element('results'), structures, async s => {
+    menu.close()
     if (store.get(s.layer).opacity === 0) store.setOpacity(s.layer, 1)
     await store.setVisible(s.layer, true)
     if (store.get(s.layer).status !== 'ready' || !store.get(s.layer).visible) return

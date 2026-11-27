@@ -36,12 +36,16 @@ h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: 
 dialog { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 10px; max-width: 640px; max-height: 85vh; }
 dialog a { color: var(--accent); }
 dialog::backdrop { background: rgb(0 0 0 / .6); }
+#menu-toggle, #menu-close, #menu-backdrop { display: none; }
 @media (max-width: 800px) {
-  main { grid-template-columns: 1fr; grid-template-rows: 55vh auto auto; overflow-y: auto; }
+  #menu-toggle { display: block; min-width: 44px; min-height: 44px; font-size: 1.3rem; line-height: 1; }
+  main { grid-template-columns: 1fr; grid-template-rows: 65vh auto; overflow-y: auto; }
   #viewer { grid-row: 1; }
-  #details { grid-row: 2; }
-  #controls { grid-row: 3; }
-  aside { overflow: visible; }
+  #details { grid-row: 2; overflow: visible; }
+  #controls { position: fixed; z-index: 2; top: 0; bottom: 0; left: 0; width: min(320px, 85vw); overscroll-behavior: contain; transform: translateX(-100%); visibility: hidden; transition: transform .2s, visibility .2s; }
+  #controls.open { transform: none; visibility: visible; transition: transform .2s; }
+  #menu-close { display: block; min-height: 44px; margin: 0 0 12px auto; }
+  #menu-backdrop.open { display: block; position: fixed; z-index: 1; inset: 0; background: rgb(0 0 0 / .6); }
 }
 main[hidden], #exercise[hidden], .header-link[hidden] { display: none; }
 .header-link { color: var(--text); text-decoration: none; background: #263043; border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; }

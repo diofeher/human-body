@@ -8,13 +8,16 @@
 </head>
 <body>
   <header>
+    <button id="menu-toggle" type="button" aria-controls="controls" aria-expanded="false" aria-label="Abrir menu de filtros">☰</button>
     <h1>Atlas 3D do Corpo Humano</h1>
     <p>Material educativo. Não substitui orientação médica.</p>
     <a id="open-exercise" class="header-link" href="#agachamento">Exercícios</a>
     <button id="open-credits" type="button">Créditos e licenças</button>
   </header>
   <main>
-    <aside id="controls">
+    <div id="menu-backdrop"></div>
+    <aside id="controls" aria-label="Filtros">
+      <button id="menu-close" type="button">Fechar ✕</button>
       <div class="search">
         <input id="search" type="search" placeholder="Buscar estrutura…" aria-label="Buscar estrutura" autocomplete="off">
         <ul id="results"></ul>
