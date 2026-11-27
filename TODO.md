@@ -2,14 +2,15 @@
 
 ## Animações de exercícios com peso corporal
 
-Atualizado em 2026-11-26. Agachamento, avanço parado e flexão de braços implementados no branch
+Atualizado em 2026-11-27. Agachamento, avanço parado e flexão de braços implementados no branch
 `feat/squat-animation` (não mesclados em `main`).
 Design: `docs/superpowers/specs/2026-11-26-squat-animation-design.md` e
 `docs/superpowers/specs/2026-11-26-lunge-pushup-design.md`.
 
 ### Pendências de todos os exercícios
-- Revisão por profissional qualificado: movimento, orientações, erros comuns e papéis dos músculos.
-  Não fazer merge em `main` antes disso (o push publica o site).
+- Revisão dos três exercícios aprovada (informado em 2026-11-27). Mudanças no movimento, nas
+  orientações, nos erros comuns ou nos músculos pedem nova revisão.
+- O push em `main` publica o site.
 - Testar em um celular de verdade.
 - Antes de adicionar versões erradas do movimento, permitir mais de um movimento por exercício.
 
@@ -54,4 +55,4 @@ recomendada. Decidir no design quanto detalhe é necessário.
 - Verificar a licença de qualquer material novo (modelos, capturas de movimento).
 
 ### Próximo passo
-Ver `#agachamento`, `#avanco` e `#flexao` e providenciar a revisão.
+Ver `#agachamento`, `#avanco` e `#flexao` e decidir quando publicar.

@@ -1,7 +1,7 @@
 {
  "id": "agachamento",
  "name": "Agachamento",
- "reviewed": false,
+ "reviewed": true,
  "depths": 11,
  "motion": {
   "type": "squat",

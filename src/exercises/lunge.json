@@ -1,7 +1,7 @@
 {
  "id": "avanco",
  "name": "Avanço parado",
- "reviewed": false,
+ "reviewed": true,
  "depths": 11,
  "motion": {
   "type": "lunge",

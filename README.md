@@ -24,8 +24,9 @@ Requer Blender (`brew install --cask blender`).
 `#agachamento`, `#avanco` e `#flexao` abrem as animações. Posições, tempos, orientações e músculos
 ficam em `src/exercises/{squat,lunge,pushup}.json`; depois de mudar `motion`, `solids` ou músculos,
 rode `tools/convert/build-exercise.sh [squat|lunge|pushup]` (requer os arquivos de `fetch.sh`).
-Com `RENDERS=<pasta>`, o script também gera imagens para conferência. O conteúdo ainda não foi
-revisado: marque `reviewed: true` somente após revisão por pessoa qualificada.
+Com `RENDERS=<pasta>`, o script também gera imagens para conferência. Os três exercícios estão marcados
+como revisados; depois de mudar o conteúdo, mantenha `reviewed: true` somente após nova revisão por
+pessoa qualificada.
 
 ## Descrições
 Ficam em `src/data/descriptions.ts`, redigidas com IA. Marque `reviewed: true` somente após

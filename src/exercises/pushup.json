@@ -1,7 +1,7 @@
 {
  "id": "flexao",
  "name": "Flexão de braços",
- "reviewed": false,
+ "reviewed": true,
  "depths": 11,
  "motion": {
   "type": "pushup",
