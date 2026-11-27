@@ -3,13 +3,15 @@ import { describe, expect, test } from 'vitest'
 import squat from '../src/exercises/squat.json'
 import lunge from '../src/exercises/lunge.json'
 import pushup from '../src/exercises/pushup.json'
+import bridge from '../src/exercises/bridge.json'
+import calfraise from '../src/exercises/calfraise.json'
 import { muscleNode, type Exercise, type ExerciseManifest } from '../src/exercises/types'
 
 const SEGMENTS = ['toes', 'foot', 'shank', 'patella', 'thigh', 'trunk', 'arm', 'ulna', 'radius', 'hand'] as const
 
-describe.each([squat, lunge, pushup] as Exercise[])('$id', exercise => {
-  const GLB = `public/exercises/${exercise.motion.type}.glb`
-  const MANIFEST = `public/exercises/${exercise.motion.type}.json`
+describe.each([squat, lunge, pushup, bridge, calfraise] as Exercise[])('$id', exercise => {
+  const GLB = `public/exercises/${exercise.asset ?? exercise.motion.type}.glb`
+  const MANIFEST = `public/exercises/${exercise.asset ?? exercise.motion.type}.json`
   const manifest = (): ExerciseManifest => JSON.parse(readFileSync(MANIFEST, 'utf8'))
   const gltf = () => {
     const buf = readFileSync(GLB)

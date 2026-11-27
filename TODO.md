@@ -1,5 +1,18 @@
 # TODO
 
+## Novos exercícios (19 pedidos, branch `feat/more-exercises`)
+Todos com `reviewed: false` até revisão por pessoa qualificada.
+
+- Exportados: ponte de glúteos (`#ponte`) e elevação de panturrilha (`#panturrilha`), com o
+  movimento geral `free` (ângulos no JSON).
+- Provavelmente cabem no esqueleto atual: cadeirinha, prancha, bom-dia, mergulho no banco,
+  terra unilateral, abdução de quadril deitado.
+- Talvez caibam (membros independentes): perdigueiro, inseto morto.
+- Precisam de coluna dividida: abdominal curto, abdominal completo, super-homem.
+- Precisam de escápula e clavícula móveis: barra fixa, remada invertida, flexão pike,
+  elevação de braços, polichinelo, burpee (barra fixa e remada também precisam de uma barra).
+- Na ponte, o pescoço é rígido e a cabeça passa um pouco abaixo do chão no topo.
+
 ## Animações de exercícios com peso corporal
 
 Atualizado em 2026-11-27. Agachamento, avanço parado e flexão de braços implementados no branch

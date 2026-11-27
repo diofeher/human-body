@@ -40,7 +40,7 @@ function deformable(source: BufferGeometry) {
 
 export async function createPlayer(container: HTMLElement, exercise: Exercise) {
   const url = (file: string) => `${import.meta.env.BASE_URL}exercises/${file}`
-  const asset = exercise.motion.type
+  const asset = exercise.asset ?? exercise.motion.type
   const [manifest, gltf] = await Promise.all([
     fetch(url(`${asset}.json`)).then(async response => {
       if (!response.ok) throw new Error(`${asset}.json: ${response.status}`)
